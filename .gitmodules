@@ -1,0 +1,3 @@
+[submodule "wxBorderlessFrame"]
+	path = wxBorderlessFrame
+	url = https://github.com/swiszczoo/wxBorderlessFrame

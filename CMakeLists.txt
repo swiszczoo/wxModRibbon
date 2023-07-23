@@ -25,7 +25,7 @@ cmake_policy(SET CMP0077 NEW)
 add_subdirectory(wxBorderlessFrame)
 
 set(LIB_SOURCES
-    src/test.cpp
+    "src/modribbon.cpp"
 )
 
 set(EXAMPLE_SOURCES example/main.cpp)
@@ -65,4 +65,8 @@ if(WXMR_EXAMPLE)
         COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:example> $<TARGET_FILE_DIR:example>
         COMMAND_EXPAND_LISTS
         )
+
+    if(WIN32)
+        target_sources(example PRIVATE example/main.rc)
+    endif()
 endif()

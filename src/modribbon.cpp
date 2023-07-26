@@ -36,6 +36,12 @@ wxUint16 wxModRibbon::RegisterCommand(const wxModRibbonCommand& command)
     return wxMR_INVALID_COMMAND;
 }
 
+void wxModRibbon::AttachUi(wxModRibbonFrame* frame, wxModRibbonArtProvider* artprov)
+{
+    m_frame = frame;
+    m_artprov.reset(artprov);
+}
+
 wxUint16 wxModRibbon::AllocNextCommandId()
 {
     while (m_commands[++m_lastId]) {

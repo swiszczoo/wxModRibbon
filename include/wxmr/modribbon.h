@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:        modribbon.h
+// Name:        wxmr/modribbon.h
 // Purpose:     Main wxModRibbon header file
 // Author:      Łukasz Świszcz
 // Modified by:
@@ -16,6 +16,7 @@
 #ifndef _WXMR_MODRIBBON_H_
 #define _WXMR_MODRIBBON_H_
 
+#include "artprov.h"
 #include "cmdobserver.h"
 
 #include <wx/wxprec.h>
@@ -28,6 +29,7 @@
 
  // Forward declarations
 class wxModRibbon;
+class wxModRibbonFrame;
 
 #define wxMR_INVALID_COMMAND 0
 
@@ -45,6 +47,7 @@ public:
         m_tooltipTitle = tooltipTitle;
         m_tooltipDescription = tooltipDescription;
         m_keytip = keytip;
+        m_enabled = true;
     }
 
     wxModRibbonCommand(const wxString& labelTitle, const wxString& labelDescription,
@@ -113,6 +116,23 @@ public:
         NotifyAll();
     }
 
+    void Enable(bool enable = true)
+    {
+        m_enabled = enable;
+        NotifyAll();
+    }
+
+    void Disable()
+    {
+        m_enabled = false;
+        NotifyAll();
+    }
+
+    bool IsEnabled() const
+    {
+        return m_enabled;
+    }
+
 
 private:
     wxUint16 m_id;
@@ -121,6 +141,7 @@ private:
     wxString m_tooltipTitle;
     wxString m_tooltipDescription;
     wxString m_keytip;
+    bool m_enabled;
 
     std::unordered_set<wxModRibbonCommandObserver*> m_observers;
 
@@ -152,9 +173,13 @@ public:
         return m_commands[commandId].get();
     }
 
+    void AttachUi(wxModRibbonFrame* frame, wxModRibbonArtProvider* artprov);
+
 private:
     wxUint16 m_lastId;
     std::unique_ptr<wxModRibbonCommand> m_commands[1 << 16];
+    wxModRibbonFrame* m_frame;
+    std::unique_ptr<wxModRibbonArtProvider> m_artprov;
 
     wxUint16 AllocNextCommandId();
 };

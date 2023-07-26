@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:        cmdobserver.h
+// Name:        wxmr/cmdobserver.h
 // Purpose:     wxModRibbonCommandObserver interface definition
 // Author:      Łukasz Świszcz
 // Modified by:

@@ -25,10 +25,12 @@ cmake_policy(SET CMP0077 NEW)
 add_subdirectory(wxBorderlessFrame)
 
 set(LIB_SOURCES
+    "src/metroartprov.cpp"
     "src/modribbon.cpp"
+    "src/ribbonframe.cpp"
 )
 
-set(EXAMPLE_SOURCES example/main.cpp)
+set(EXAMPLE_SOURCES "example/main.cpp")
 
 if(UNIX AND NOT APPLE)
     add_definitions( -DLINUX=1 )

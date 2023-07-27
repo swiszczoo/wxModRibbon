@@ -21,7 +21,16 @@
 
 class wxModRibbonMetroArtProvider : public wxModRibbonArtProvider {
 public:
+    wxModRibbonMetroArtProvider(wxFrame* frame);
+    void ResetMetrics(wxFrame* newFrame = nullptr) override;
     wxSystemButtonsBase* CreateSystemButtons(wxBorderlessFrameBase* frame) override;
+    int GetMetric(int id) override;
+    void SetMetric(int id, int newVal) override;
+
+private:
+    wxFrame* m_frame;
+    int m_firstRowHeight;
+    int m_secondRowHeight;
 };
 
 #endif

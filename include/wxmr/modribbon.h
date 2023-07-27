@@ -173,6 +173,8 @@ public:
         return m_commands[commandId].get();
     }
 
+    wxModRibbonArtProvider* GetArtProvider() const { return m_artprov.get(); }
+
     void AttachUi(wxModRibbonFrame* frame, wxModRibbonArtProvider* artprov);
 
 private:

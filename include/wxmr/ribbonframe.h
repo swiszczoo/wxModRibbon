@@ -55,12 +55,20 @@ public:
         long style = wxDEFAULT_FRAME_STYLE,
         const wxString& name = wxASCII_STR(wxFrameNameStr));
 
+    wxModRibbon* GetRibbon() const { return m_ribbon; }
+
+    void LayoutRibbon();
+
 protected:
     wxWindowPart GetWindowPart(wxPoint mousePosition) const override;
+    void OnNcMouse(wxMouseEvent& event);
+    void OnMouseCaptureLost(wxMouseCaptureLostEvent& event);
 
 private:
     wxModRibbon* m_ribbon;
     wxSystemButtonsBase* m_sysBtns;
+    int m_titlebarHeight;
+    bool m_titlebarRightDown;
 
     void Init();
 };

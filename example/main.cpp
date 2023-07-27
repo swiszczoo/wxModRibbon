@@ -53,14 +53,18 @@ bool MyApp::OnInit()
 }
 
 MyFrame::MyFrame()
-    : wxModRibbonFrame(new wxModRibbon(), new wxModRibbonMetroArtProvider(),
+    : wxModRibbonFrame(new wxModRibbon(), new wxModRibbonMetroArtProvider(this),
         nullptr, wxID_ANY, "wxModRibbon sample")
 {
+    wxModRibbon* ribbon = GetRibbon();
+    ribbon->GetArtProvider()->ResetMetrics();
+    LayoutRibbon();
+
     SetBackgroundColour(wxColour(255, 255, 255));
     SetSize(FromDIP(wxSize(1000, 800)));
 
     // You can also use wxBorderlessFrame calls here:
-    SetBorderColour(wxColour(31, 29, 161));
+    SetBorderColour(wxColour(43, 87, 154));
     SetBorderThickness(1);
 
     CenterOnScreen();
